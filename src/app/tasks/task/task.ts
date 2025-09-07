@@ -1,18 +1,27 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component,  Input,  inject } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { type Task } from './task.model';
+import { Card } from "../../shared/card/card";
+// import { TasksService } from '../../tasks.service';   
 
 @Component({
   selector: 'app-task',
-  standalone: true, // ✅ if you’re using standalone components
-  imports: [],
+  standalone: true,
+  imports: [Card, DatePipe],
   templateUrl: './task.html',
-  styleUrls: ['./task.css'] // ✅ plural form
+  styleUrls: ['./task.css']
 })
 export class TaskComponent {
+onCompleteTask() {
+throw new Error('Method not implemented.');
+}
   @Input({ required: true }) task!: Task;
-  @Output() complete = new EventEmitter<string>();
 
-  onCompleteTask() {
-    this.complete.emit(this.task.id);
-  }
+
+  // private tasksService = inject(TasksService);
+
+  // onCompleteTask() {
+  //   this.tasksService.removeTask(this.task.id);
+
+  // }
 }
